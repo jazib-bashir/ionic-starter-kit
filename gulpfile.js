@@ -300,15 +300,20 @@ function clean(path, done) {
  * @returns {Stream}   The stream
  */
 function inject(src, label, order) {
-    var options = {
-        read: false,
-        relative: true
-    };
-    if (label) {
-        options.name = 'inject:' + label;
-    }
+  var options = {read: false};
+  if (label) {
+    return $.inject(orderSrc(src, order,options),{name:'inject:' + label});
+  }
+  else {
+    return $.inject(orderSrc(src, order,options));
+  }
+}
 
-    return $.inject(orderSrc(src, order), options);
+function orderSrc(src, order,options) {
+//order = order || ['** /*'];
+  return gulp
+    .src(src,options)
+    .pipe($.if(order, $.order(order)));
 }
 
 /**
