@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function() {
   var src = './src/';
   var app = src + 'app/';
   var temp = './src/.tmp/';
@@ -73,7 +73,7 @@ module.exports = function () {
   /**
    * wiredep and bower settings
    */
-  config.getWiredepDefaultOptions = function () {
+  config.getWiredepDefaultOptions = function() {
     var options = {
       bowerJson: config.bower.json,
       directory: config.bower.directory,
@@ -82,4 +82,29 @@ module.exports = function () {
     };
     return options;
   };
+
+  /**
+   * karma settings
+   */
+  config.karma = getKarmaOptions();
+
+  return config;
+
+  ////////////////
+
+  function getKarmaOptions() {
+    var options = {
+      files: [].concat(
+        bowerFiles,
+        config.specHelpers,
+        app + '**/*.module.js',
+        app + '**/*.js',
+        temp + config.templateCache.file
+      ),
+      exclude: [],
+      preprocessors: {}
+    };
+
+    return options;
+  }
 };
