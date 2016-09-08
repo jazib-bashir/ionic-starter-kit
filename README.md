@@ -29,6 +29,7 @@ All working files are underneath the 'src' folder trying to follow the [angular 
 
 Everything is set up to serve from this src folder using
 ```bash
+$ gulp watch (otherwise css changes not reflect on dest)
 $ ionic serve
 ```
 
@@ -51,22 +52,6 @@ A bunch of useful gulp tasks have been copied from the [HotTowel yeoman generato
 - `gulp help`
 
     Displays all of the available gulp tasks.
-
-### Code Analysis
-
-- `gulp vet`
-
-    Performs static code analysis on all javascript files. Runs jshint and jscs.
-
-- `gulp vet --verbose`
-
-    Displays all files affected and extended information about the code analysis.
-
-### Testing
-
-- `gulp test`
-
-    Runs all unit tests using karma runner & jasmine with phantomjs. Depends on vet task, for code analysis.
 
 ### Cleaning Up
 
@@ -106,16 +91,6 @@ A bunch of useful gulp tasks have been copied from the [HotTowel yeoman generato
 
     Compile less files to CSS and copy to the build folder
 
-### Lib Files
-
-- `gulp wiredep`
-
-    Looks up all bower components' main files and JavaScript source code, then adds them to the `index.html`.
-    The `.bowerrc` file also runs this as a postinstall task whenever `bower install` is run.
-
-    **NOTE:**
-    wiredep will only grab the bower dependencies that are listed in you bower.json file. Use the `--save` flag when installing dependencies via bower to add them to automatically add them to you bower.json file.
-
 ### Angular HTML Templates
 
 - `gulp templatecache`
@@ -132,15 +107,12 @@ A bunch of useful gulp tasks have been copied from the [HotTowel yeoman generato
 
     You can us the standard ionic serve task here.
 
+## TODO [UpComping Features]
 
-### Building Production Code
-
-- `gulp optimize`
-
-    Optimize all javascript and styles, move to a build folder, and inject them into the new index.html
-
-- `gulp build`
-
-    Copies the ionic fonts, copies images and runs `gulp optimize` to build the production code to the build folder.
+    + [ ] gulp vet
+    + [ ] gulp test
+    + [ ] gulp wiredep
+    + [ ] gulp optimize
+    + [ ] gulp build
 
 **NOTE:** This project contains a before_build hook for cordova which so that the gulp build task is run automatically when building with `cordova build [platfrom]` or `ionic build [platfrom]`
